@@ -22,12 +22,12 @@ import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/querie
 import { useUserContext } from "@/lib/context/AuthContext"
  
 const SignUpForm = () => {
-  const {checkAuthUser, isLoading:isUserLoading} = useUserContext();
+  const {checkAuthUser} = useUserContext();
   const navigate = useNavigate();
 
   const {mutateAsync: createAccountUser, isPending:isCreatingAccount} = useCreateUserAccount();
 
-  const {mutateAsync: signInAccount, isPending:isSigningIn} = useSignInAccount();
+  const {mutateAsync: signInAccount} = useSignInAccount();
   
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
