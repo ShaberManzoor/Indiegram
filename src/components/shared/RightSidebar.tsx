@@ -6,7 +6,7 @@ import { useGetUsers } from "@/lib/react-query/queriesAndMutations";
 const RightSidebar = () => {
   const { toast } = useToast();
 
-  const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers();
+  const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers(4);
 
   if (isErrorCreators) {
     toast({ title: "Something went wrong." });
@@ -22,7 +22,7 @@ const RightSidebar = () => {
         {isLoading && !creators ? (
           <Loader />
         ) : (
-          <ul className="flex grid-cols-2 gap-2">
+          <ul className="flex flex-wrap gap-2">
             {creators?.documents.map((creator) => (
               <li key={creator?.$id} className="flex-1 min-w-[140px] w-full">
                 <UserCard user={creator} />
